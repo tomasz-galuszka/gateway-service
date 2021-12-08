@@ -1,0 +1,15 @@
+upstream blog_xmanager_ovh {
+  server ${SERVICE_BLOG_XMANAGER_OVH_HOST}:${SERVICE_BLOG_XMANAGER_OVH_PORT};
+}
+
+upstream tematzycie_pl {
+  server ${SERVICE_TEMAT_ZYCIE_PL_HOST}:${SERVICE_TEMAT_ZYCIE_PL_PORT};
+}
+
+upstream webspider_xmanager_ovh {
+  server ${SERVICE_WEBSPIDER_XMANAGER_OVH_HOST}:${SERVICE_WEBSPIDER_XMANAGER_OVH_PORT};
+}
+
+upstream xmanager_ovh {
+  server ${SERVICE_XMANAGER_OVH_HOST}:${SERVICE_XMANAGER_OVH_PORT};
+}
