@@ -2,10 +2,6 @@ name: User interface workflow
 
 on:
   push:
-    branches:
-      - 'develop'
-      - 'feature/**'
-      - 'release/**'
     tags:
       - '*'
 
