@@ -1,0 +1,47 @@
+name: User interface workflow
+
+on:
+  push:
+    branches:
+      - 'develop'
+      - 'feature/**'
+      - 'release/**'
+    tags:
+      - '*'
+
+jobs:
+
+  build:
+    if: github.ref == 'refs/heads/develop'
+      || startsWith(github.ref, 'refs/heads/release')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: rlespinasse/github-slug-action@v3.x
+      - name: setup:tag-suffix
+        run: |
+          echo "$GITHUB_REF_SLUG"
+          echo "TAG_SUFFIX=-$GITHUB_REF_SLUG" >> $GITHUB_ENV
+        if: ${{ github.ref_type == 'branch' }}
+
+      - name: build:microservice
+        run: make build-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}" TAG_SUFFIX="${{ env.TAG_SUFFIX }}"
+      - name: build:certbot
+        run: make build-certbot-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}" TAG_SUFFIX="${{ env.TAG_SUFFIX }}"
+
+  build-tag:
+    if: github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: rlespinasse/github-slug-action@v3.x
+      - name: build:microservice
+        run: make build-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}" TAG_SUFFIX=""
+      - name: build:certbot
+        run: make build-certbot-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}" TAG_SUFFIX=""

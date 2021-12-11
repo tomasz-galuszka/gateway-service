@@ -3,9 +3,18 @@ version: "3.3"
 services:
 
   gateway-service:
-    image: ghcr.io/tomasz-galuszka/gateway-service:latest-local
+    image: ghcr.io/tomasz-galuszka/gateway-service:${SERVICE_VERSION}
+    container_name: gateway-container
+    networks:
+      default:
+        aliases:
+          - xmanager.ovh
+          - blog.xmanager.ovh
+          - webspider.xmanager.ovh
+          - tematzycie.pl
     ports:
       - "80:80"
+      - "443:443"
     environment:
       SERVICE_BLOG_XMANAGER_OVH_HOST: blog-service
       SERVICE_BLOG_XMANAGER_OVH_PORT: 80
@@ -15,23 +24,26 @@ services:
       SERVICE_WEBSPIDER_XMANAGER_OVH_PORT: 80
       SERVICE_XMANAGER_OVH_HOST: xmanager-service
       SERVICE_XMANAGER_OVH_PORT: 80
+    volumes:
+      - ./certbot:/letsencrypt
+      - ./certbot/certs:/etc/letsencrypt
 
   blog-service:
-    image: nginx:latest
+    image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/blog-service.html:/usr/share/nginx/html/index.html
 
   tematzycie-service:
-    image: nginx:latest
+    image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/tematzycie-service.html:/usr/share/nginx/html/index.html
 
   webspider-service:
-    image: nginx:latest
+    image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/webspider-service.html:/usr/share/nginx/html/index.html
 
   xmanager-service:
-    image: nginx:latest
+    image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/xmanager-service.html:/usr/share/nginx/html/index.html
