@@ -1,10 +1,21 @@
-VERSION := 0.0.1-SNAPSHOT
+VERSION := 1.0.0
 
 # BUILD SECTION
 build:
-	docker build -t ghcr.io/tomasz-galuszka/gateway-service:$(VERSION)-local -t ghcr.io/tomasz-galuszka/gateway-service:latest-local .
+	docker build -t ghcr.io/tomasz-galuszka/gateway:$(VERSION)-local -t ghcr.io/tomasz-galuszka/gateway:latest-local .
 build-certbot:
-	docker build -t ghcr.io/tomasz-galuszka/certbot-job:$(VERSION)-local -t ghcr.io/tomasz-galuszka/certbot-job:latest-local ./docker/certbot
+	docker build -t ghcr.io/tomasz-galuszka/certbot:$(VERSION)-local -t ghcr.io/tomasz-galuszka/certbot:latest-local ./docker/certbot
+
+build-remote:
+	docker build -t ghcr.io/tomasz-galuszka/gateway:$(VERSION)$(TAG_SUFFIX) -t ghcr.io/tomasz-galuszka/gateway:latest$(TAG_SUFFIX) .
+	docker login https://ghcr.io --username=$(REPOSITORY_USER) --password=$(REPOSITORY_PASSWORD)
+	docker push ghcr.io/tomasz-galuszka/gateway:$(VERSION)$(TAG_SUFFIX)
+	docker push ghcr.io/tomasz-galuszka/gateway:latest$(TAG_SUFFIX)
+build-certbot-remote:
+	docker build -t ghcr.io/tomasz-galuszka/certbot:$(VERSION)$(TAG_SUFFIX) -t ghcr.io/tomasz-galuszka/certbot:latest$(TAG_SUFFIX) ./docker/certbot
+	docker login https://ghcr.io --username=$(REPOSITORY_USER) --password=$(REPOSITORY_PASSWORD)
+	docker push ghcr.io/tomasz-galuszka/certbot:$(VERSION)$(TAG_SUFFIX)
+	docker push ghcr.io/tomasz-galuszka/certbot:latest$(TAG_SUFFIX)
 
 # TEST SECTION
 test:
