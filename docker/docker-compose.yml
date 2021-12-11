@@ -33,9 +33,19 @@ services:
       - ./stubs/blog-service.html:/usr/share/nginx/html/index.html
 
   tematzycie-service:
-    image: nginx:${NGINX_VERSION}
+    image: ghcr.io/tomasz-galuszka/tematzycie:latest-local
     volumes:
-      - ./stubs/tematzycie-service.html:/usr/share/nginx/html/index.html
+      - ./application/:/var/www/html
+
+  tematzycie-db:
+    image: mysql:5.7
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=baza1
+      - MYSQL_DATABASE=tematzycie_pl
+      - MYSQL_USER=beata21
+      - MYSQL_PASSWORD=PolskaGora19(!
 
   webspider-service:
     image: nginx:${NGINX_VERSION}
