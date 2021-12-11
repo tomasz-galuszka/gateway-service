@@ -1,4 +1,4 @@
-VERSION := 1.0.0
+VERSION := 1.0.1
 
 # BUILD SECTION
 build:
@@ -30,6 +30,6 @@ test:
 start:
 	docker-compose -f ./docker/docker-compose.yml up -d
 start-certbot:
-	docker run -it --rm --name certbot -v ${PWD}/docker/certbot:/letsencrypt -v ${PWD}/docker/certbot/certs:/etc/letsencrypt ghcr.io/tomasz-galuszka/certbot-job:latest-local bash
+	docker run -it --rm --name certbot -v ${PWD}/docker/certbot:/letsencrypt -v ${PWD}/docker/certbot/certs:/etc/letsencrypt ghcr.io/tomasz-galuszka/certbot:latest-local bash
 stop:
 	docker-compose -f ./docker/docker-compose.yml down
