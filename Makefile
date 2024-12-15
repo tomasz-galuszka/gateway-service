@@ -1,4 +1,4 @@
-VERSION := 1.1.3
+VERSION := 1.1.5
 
 # BUILD SECTION
 build:
@@ -21,11 +21,6 @@ build-certbot-remote:
 test:
 	@curl http://tematzycie.pl
 	@echo ""
-	@curl http://blog.xmanager.ovh
-	@echo ""
-	@curl http://webspider.xmanager.ovh
-	@echo ""
-	@curl http://xmanager.ovh
 # START SECTION
 start:
 	docker-compose -f ./docker/docker-compose.yml up -d
