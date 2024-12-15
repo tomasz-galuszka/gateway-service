@@ -8,41 +8,17 @@ services:
     networks:
       default:
         aliases:
-          - xmanager.ovh
-          - blog.xmanager.ovh
-          - webspider.xmanager.ovh
           - tematzycie.pl
     ports:
       - "80:80"
       - "443:443"
     environment:
-      SERVICE_BLOG_XMANAGER_OVH_HOST: blog-service
-      SERVICE_BLOG_XMANAGER_OVH_PORT: 80
       SERVICE_TEMAT_ZYCIE_PL_HOST: tematzycie-service
       SERVICE_TEMAT_ZYCIE_PL_PORT: 80
-      SERVICE_WEBSPIDER_XMANAGER_OVH_HOST: webspider-service
-      SERVICE_WEBSPIDER_XMANAGER_OVH_PORT: 80
-      SERVICE_XMANAGER_OVH_HOST: xmanager-service
-      SERVICE_XMANAGER_OVH_PORT: 80
     volumes:
       - ./certbot/certs:/etc/letsencrypt
-
-  blog-service:
-    image: nginx:${NGINX_VERSION}
-    volumes:
-      - ./stubs/blog-service.html:/usr/share/nginx/html/index.html
 
   tematzycie-service:
     image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/tematzycie-service.html:/usr/share/nginx/html/index.html
-
-  webspider-service:
-    image: nginx:${NGINX_VERSION}
-    volumes:
-      - ./stubs/webspider-service.html:/usr/share/nginx/html/index.html
-
-  xmanager-service:
-    image: nginx:${NGINX_VERSION}
-    volumes:
-      - ./stubs/xmanager-service.html:/usr/share/nginx/html/index.html
