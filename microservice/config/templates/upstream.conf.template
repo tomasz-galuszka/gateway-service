@@ -1,3 +1,6 @@
+# Group of backend servers
+
+# Backend group 1
 upstream tematzycie_pl {
   server ${SERVICE_TEMAT_ZYCIE_PL_HOST}:${SERVICE_TEMAT_ZYCIE_PL_PORT};
 }
