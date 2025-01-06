@@ -40,4 +40,4 @@ jobs:
       - name: build:microservice
         run: make build-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}" TAG_SUFFIX=""
       - name: build:certbot
-        run: make build-certbot-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}" TAG_SUFFIX=""
+        run: make build-sidecar-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}" TAG_SUFFIX=""
