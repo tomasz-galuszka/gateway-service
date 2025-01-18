@@ -7,12 +7,15 @@ services:
       default:
         aliases:
           - tematzycie.pl
+          - tech.tematzycie.pl
     ports:
       - "80:80"
       - "443:443"
     environment:
       SERVICE_TEMAT_ZYCIE_PL_HOST: tematzycie-service
       SERVICE_TEMAT_ZYCIE_PL_PORT: 80
+      SERVICE_TECH_TEMAT_ZYCIE_PL_HOST: tech-tematzycie-service
+      SERVICE_TECH_TEMAT_ZYCIE_PL_PORT: 80
     volumes:
       - ./etc/letsencrypt:/etc/letsencrypt
 
@@ -21,3 +24,9 @@ services:
     image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/tematzycie-service.html:/usr/share/nginx/html/index.html
+
+  tech-tematzycie-service:
+    container_name: tech-tematzycie-service
+    image: nginx:${NGINX_VERSION}
+    volumes:
+      - ./stubs/tech-tematzycie-service.html:/usr/share/nginx/html/index.html
