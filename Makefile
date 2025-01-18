@@ -1,6 +1,9 @@
-VERSION := 2.0.1
+VERSION := 2.0.2
 
 # BUILD SECTION
+version:
+	$(info  $(VERSION))
+
 build:
 	docker build -t ghcr.io/tomasz-galuszka/gateway:$(VERSION)-local -t ghcr.io/tomasz-galuszka/gateway:latest-local --output type=docker ./microservice
 build-sidecar:
