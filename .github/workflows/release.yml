@@ -1,0 +1,35 @@
+name: Release new tag
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+
+  create-tag:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      repository-projects: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: '0'
+      - uses: rlespinasse/github-slug-action@v3.x
+      - name:  create and push new tag
+        run:  |
+          NEW_TAG=$(git describe --tags --abbrev=0 | awk -F. '{OFS="."; $NF+=1; print $0}')
+          echo "New tag: $NEW_TAG"
+          NEXT_VERSION="${NEW_TAG:=0.0.1}"
+
+          echo "Next version is ${NEXT_VERSION}"
+          
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
+          git tag -a $NEXT_VERSION -m "Release $NEXT_VERSION"
+          git push origin $NEXT_VERSION

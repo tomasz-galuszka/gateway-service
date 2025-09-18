@@ -12,5 +12,5 @@ upstream tech_tematzycie_pl {
 
 # Backend group 3
 upstream expensemanager_site {
-  server ${SERVICE_EXPENSE_MANAGER_SITE_HOST}:${SERVICE_EXPENSE_MANAGER_SITE_PORT};
+  server ${SERVICE_EXPENSEMANAGER_SITE_HOST}:${SERVICE_EXPENSEMANAGER_SITE_PORT};
 }
