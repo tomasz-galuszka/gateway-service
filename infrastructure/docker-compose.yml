@@ -25,11 +25,6 @@ services:
     volumes:
       - ./stubs/tematzycie-service.html:/usr/share/nginx/html/index.html
 
-  tech-tematzycie-service:
-    container_name: tech-tematzycie-service
-    image: nginx:${NGINX_VERSION}
-    volumes:
-      - ./stubs/tech-tematzycie-service.html:/usr/share/nginx/html/index.html
 
   expensemanager-site-service:
     container_name: expensemanager-site-service
