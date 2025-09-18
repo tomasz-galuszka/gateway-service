@@ -9,3 +9,8 @@ upstream tematzycie_pl {
 upstream tech_tematzycie_pl {
   server ${SERVICE_TECH_TEMAT_ZYCIE_PL_HOST}:${SERVICE_TECH_TEMAT_ZYCIE_PL_PORT};
 }
+
+# Backend group 3
+upstream expensemanager_site {
+  server ${SERVICE_TECH_TEMAT_ZYCIE_PL_HOST}:${SERVICE_TECH_TEMAT_ZYCIE_PL_PORT};
+}

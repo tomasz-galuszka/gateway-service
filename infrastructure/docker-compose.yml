@@ -30,3 +30,9 @@ services:
     image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/tech-tematzycie-service.html:/usr/share/nginx/html/index.html
+
+  expensemanager-site-service:
+    container_name: expensemanager-site-service
+    image: nginx:${NGINX_VERSION}
+    volumes:
+      - ./stubs/expensemanager.site-service.html:/usr/share/nginx/html/index.html
