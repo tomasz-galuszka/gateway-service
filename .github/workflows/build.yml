@@ -6,9 +6,6 @@ on:
     workflows: ["Release new tag"]
     types:
       - completed
-  push:
-    branches:
-      - master
 
 jobs:
 
