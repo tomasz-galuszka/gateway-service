@@ -1,4 +1,4 @@
-name: Build package based on new tag
+name: Build
 
 on:
   workflow_run:
