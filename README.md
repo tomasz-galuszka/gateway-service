@@ -71,3 +71,5 @@ server {
 ```
 include            conf.d/server-<domain>.conf;
 ```
+
+7) New entry into the `microservice/config/templates/upstream.conf.template`
