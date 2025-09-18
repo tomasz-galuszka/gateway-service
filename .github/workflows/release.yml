@@ -21,7 +21,7 @@ jobs:
           fetch-depth: '0'
       - uses: rlespinasse/github-slug-action@v3.x
       - name:  create and push new tag
-        run:  |
+        run: |
           NEW_TAG=$(git describe --tags --abbrev=0 | awk -F. '{OFS="."; $NF+=1; print $0}')
           echo "New tag: $NEW_TAG"
           NEXT_VERSION="${NEW_TAG:=0.0.1}"
