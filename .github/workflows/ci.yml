@@ -2,8 +2,8 @@ name: Build workflow
 
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - master
 
 jobs:
 
