@@ -16,6 +16,8 @@ services:
       SERVICE_TEMAT_ZYCIE_PL_PORT: 80
       SERVICE_TECH_TEMAT_ZYCIE_PL_HOST: tech-tematzycie-service
       SERVICE_TECH_TEMAT_ZYCIE_PL_PORT: 80
+      SERVICE_EXPENSE_MANAGER_SITE_HOST: expensemanager-site-service
+      SERVICE_EXPENSE_MANAGER_SITE_PORT: 80
     volumes:
       - ./etc/letsencrypt:/etc/letsencrypt
 
@@ -25,8 +27,8 @@ services:
     volumes:
       - ./stubs/tematzycie-service.html:/usr/share/nginx/html/index.html
 
-  tech-tematzycie-service:
-    container_name: tech-tematzycie-service
+  expensemanager-site-service:
+    container_name: expensemanager-site-service
     image: nginx:${NGINX_VERSION}
     volumes:
-      - ./stubs/tech-tematzycie-service.html:/usr/share/nginx/html/index.html
+      - ./stubs/expensemanager.site-service.html:/usr/share/nginx/html/index.html
