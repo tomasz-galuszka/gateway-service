@@ -1,4 +1,4 @@
-VERSION := 2.0.8
+VERSION := latest-local
 
 # BUILD SECTION
 version:
@@ -30,5 +30,9 @@ start-certbot:
 
 # TEST SECTION
 test:
-	@curl http://tematzycie.pl
+	@curl -kL http://expensemanager.site
+	@echo ""
+	@curl -kL http://tematzycie.pl
+	@echo ""
+	@curl -kL http://tech.tematzycie.pl
 	@echo ""
