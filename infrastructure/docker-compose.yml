@@ -8,6 +8,7 @@ services:
         aliases:
           - tematzycie.pl
           - tech.tematzycie.pl
+          - expensemanager.site
     ports:
       - "80:80"
       - "443:443"
@@ -16,7 +17,7 @@ services:
       SERVICE_TEMAT_ZYCIE_PL_PORT: 80
       SERVICE_TECH_TEMAT_ZYCIE_PL_HOST: tech-tematzycie-service
       SERVICE_TECH_TEMAT_ZYCIE_PL_PORT: 80
-      SERVICE_EXPENSEMANAGER_SITE_HOST: SERVICE_EXPENSEMANAGER_SITE_HOST
+      SERVICE_EXPENSEMANAGER_SITE_HOST: expensemanager-site-service
       SERVICE_EXPENSEMANAGER_SITE_PORT: 80
     volumes:
       - ./etc/letsencrypt:/etc/letsencrypt
@@ -26,6 +27,12 @@ services:
     image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/tematzycie-service.html:/usr/share/nginx/html/index.html
+
+  tech-tematzycie-service:
+    container_name: tech-tematzycie-service
+    image: nginx:${NGINX_VERSION}
+    volumes:
+      - ./stubs/tech-tematzycie-service.html:/usr/share/nginx/html/index.html
 
   expensemanager-site-service:
     container_name: expensemanager-site-service
