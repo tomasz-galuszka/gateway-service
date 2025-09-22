@@ -2,14 +2,6 @@
 Multi domain proxy with SSL port
 ![](./infrastructure.png)
 
-### How to add new feature?
-1) Create feature branch feature/**
-2) Merge feature branch into develop branch
-3) Create release branch from develop
-4) Create tag from release branch `git tag -a 1.1.5 -m "Release 1.1.5"`
-5) Push tag `git push origin 1.1.5`
-6) Deploy tag
-7) Merge release branch into master branch
 
 ## How to register new domain?
 1) Generate new certificate using self-signed.sh script
@@ -71,5 +63,5 @@ server {
 ```
 include            conf.d/server-<domain>.conf;
 ```
-
-7) New entry into the `microservice/config/templates/upstream.conf.template`
+7) New entry into the `microservice/config/conf.d/upstream.template.conf`
+8) Request certificates only once ` docker exec -it gateway-service /bin/bash` and `/opt/opt/certbot/certificate_once.sh`
