@@ -26,6 +26,5 @@ jobs:
           NEW_VERSION=$(git describe --tags --abbrev=0)
           
           make VERSION="$NEW_VERSION" build-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}"
-          make VERSION="$NEW_VERSION" build-sidecar-remote REPOSITORY_USER="tomasz-galuszka" REPOSITORY_PASSWORD="${{secrets.GITHUB_TOKEN}}"
           
           
