@@ -19,6 +19,8 @@ services:
       SERVICE_TECH_TEMAT_ZYCIE_PL_PORT: 80
       SERVICE_EXPENSEMANAGER_SITE_HOST: expensemanager-site-service
       SERVICE_EXPENSEMANAGER_SITE_PORT: 80
+      SERVICE_SPLANET_STORE_HOST: splanet-store-service
+      SERVICE_SPLANET_STORE_PORT: 80
     volumes:
       - ./etc/letsencrypt:/etc/letsencrypt
 
@@ -39,3 +41,9 @@ services:
     image: nginx:${NGINX_VERSION}
     volumes:
       - ./stubs/expensemanager.site-service.html:/usr/share/nginx/html/index.html
+
+  splanet-store-service:
+    container_name: splanet-service
+    image: nginx:${NGINX_VERSION}
+    volumes:
+      - ./stubs/splanet.store-service.html/usr/share/nginx/html/index.html
