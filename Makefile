@@ -5,7 +5,7 @@ version:
 	$(info  $(VERSION))
 
 build:
-	docker build -t ghcr.io/tomasz-galuszka/gateway:$(VERSION)-local -t ghcr.io/tomasz-galuszka/gateway:latest-local --output type=docker ./microservice
+	docker build -t ghcr.io/tomasz-galuszka/gateway:$(VERSION)-local -t ghcr.io/tomasz-galuszka/gateway:latest-local ./microservice
 
 build-remote:
 	docker build -t ghcr.io/tomasz-galuszka/gateway:$(VERSION) -t ghcr.io/tomasz-galuszka/gateway:latest ./microservice

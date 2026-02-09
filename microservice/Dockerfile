@@ -4,6 +4,7 @@ RUN apt update
 RUN apt install -y nginx
 RUN apt install -y curl
 RUN apt install -y gettext
+RUN apt install -y cron
 RUN useradd -M -r -U   nginx
 
 # Install Certbot
@@ -17,8 +18,8 @@ RUN ln -s /opt/certbot/bin/certbot /usr/bin/certbot
 COPY certificate_once.sh /opt/certbot
 RUN chmod +x /opt/certbot/certificate_once.sh
 
-# Certbot auto-renewal cron job every 1 day
-RUN echo "0 0,12 * * * root /opt/certbot/bin/python -c 'import random; import time; time.sleep(86400)' && certbot renew -q" | tee -a /etc/crontab > /dev/null
+# Certbot auto-renewal every day at 12:00 AM
+RUN echo "0 0 * * * root /opt/certbot/bin/python -c 'certbot renew -q" | tee -a /etc/crontab > /dev/null
 
 # Copy nginx config
 COPY config /etc/nginx
