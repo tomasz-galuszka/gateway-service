@@ -19,13 +19,14 @@ COPY certificate_once.sh /opt/certbot
 RUN chmod +x /opt/certbot/certificate_once.sh
 
 # Certbot auto-renewal every day at 12:00 AM
-RUN echo "0 0 * * * root /opt/certbot/bin/python -c 'certbot renew -q" | tee -a /etc/crontab > /dev/null
+# Cron automatically loads files from /etc/cron.d.
+RUN echo "0 0 * * * root /opt/certbot/bin/certbot renew" > /etc/cron.d/certbot
+RUN chmod 0644 /etc/cron.d/certbot
 
 # Copy nginx config
 COPY config /etc/nginx
 COPY entrypoint.sh /etc/nginx
 RUN chmod +x /etc/nginx/entrypoint.sh
-
 
 EXPOSE 80
 
