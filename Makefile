@@ -29,3 +29,5 @@ test:
 	@echo ""
 	@curl -kL http://tech.tematzycie.pl
 	@echo ""
+	@curl -kL http://splanet.store
+	@echo ""

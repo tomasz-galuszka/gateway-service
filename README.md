@@ -15,7 +15,7 @@ Multi domain proxy with SSL port
     volumes:
       - ./stubs/<domain>-service.html:/usr/share/nginx/html/index.html
 ```
-5) Create new file (define backed for domain)) microservice/config/conf.d/server-<domain>.pl.conf with the following content:
+5) Create new file (define backed for domain) microservice/config/conf.d/server-<domain>.pl.conf with the following content:
 ```
 server {
   listen 80;
@@ -64,4 +64,5 @@ server {
 include            conf.d/server-<domain>.conf;
 ```
 7) New entry into the `microservice/config/conf.d/upstream.template.conf`
+8) Add site to the `certificate_once.sh`
 8) Request certificates only once ` docker exec -it gateway-service /bin/bash` and `/opt/opt/certbot/certificate_once.sh`
